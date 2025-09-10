@@ -42,3 +42,82 @@ mysql -u <usuario> -p < database/create_tables.sql
 mysql -u <usuario> -p
 USE monitoramento_industrial;
 SHOW TABLES;
+```
+---
+
+## Integração futura
+
+Estrutura preparada para integrar com **Power BI**, **Grafana** ou **Metabase**, permitindo dashboards de:
+
+- **Tendências por sensor**
+- **Ocorrências de alertas por período**
+- **Análise de manutenção x falhas**
+
+---
+
+### 📊 Dados utilizados
+
+- `data/dados_sensores_largo.csv`: amostras no formato **largo** (colunas por variável).
+- `data/dados_sensores_longo.csv`: amostras no formato **longo** (uma linha por leitura/sensor).
+- `data/resultados_predicoes.csv`: comparação **real vs. predito** e flag `acertou`.
+
+#### Resumo rápido (amostra atual)
+- **Leituras (formato longo):** 1.800 linhas (≈ 600 por sensor)
+- **Sensores:** temperatura, umidade, luminosidade
+- **Distribuição (`estado_operacional`):** normal » alerta » crítico
+
+> Dados **simulados** de forma controlada para garantir ≥500 leituras por sensor, conforme solicitado no enunciado.
+
+---
+
+### 🤖 Machine Learning (Classificação Multiclasse)
+
+- **Tarefa:** Classificar `estado_operacional` em **normal**, **alerta**, **crítico** a partir de **temperatura**, **umidade** e **luminosidade**.
+- **Features:** `temperatura`, `umidade`, `luminosidade` (e derivados simples).
+- **Alvo:** `estado_operacional`.
+- **Modelo:** `RandomForestClassifier` (scikit-learn).
+- **Métricas:** `accuracy`, `classification_report`, `confusion_matrix` + gráficos.
+
+#### Como executar o notebook
+
+*Requer **Python 3.10+**.*
+
+```bash
+# 1) (opcional) criar ambiente
+python -m venv .venv
+source .venv/bin/activate    # Windows: .venv\Scripts\activate
+
+# 2) instalar dependências mínimas
+pip install pandas numpy scikit-learn matplotlib seaborn jupyter
+
+# 3) abrir o notebook
+jupyter lab  # ou: jupyter notebook
+
+# 4) executar
+jupyter nbconvert --to notebook --execute machine_learning/modelo_ml.ipynb
+# ou apenas abra e rode manualmente no Jupyter
+```
+---
+
+### Visualizações
+
+- **Dados/EDA:** `visualizations/analise_sensores.png`
+- **Resultados do modelo:** `visualizations/resultados_ml.png`
+
+---
+
+### ✅ Resultados (amostra)
+
+- **Accuracy (teste):** ~**98,7%** (conjunto amostral)
+- Matriz de confusão e métricas por classe disponíveis no notebook.
+- `data/resultados_predicoes.csv` traz a verificação **real x predito** com a coluna `acertou`.
+
+> A alta acurácia é consistente com dados simulados com limites claros. Em cenário real, recomenda-se **validação cruzada**, tuning de hiperparâmetros e coleta contínua de dados.
+
+---
+
+### ▶️ Apresentação em vídeo
+  
+**Vídeo:** https://youtu.be/SEU-LINK-NAO-LISTADO
+"""
+

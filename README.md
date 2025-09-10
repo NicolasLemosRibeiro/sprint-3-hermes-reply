@@ -19,7 +19,8 @@ Este repositório entrega a Fase 5 do desafio Hermes Reply, cobrindo **modelagem
 ## 🧱 Banco de Dados (Relacional)
 
 ### Diagrama ER
-Visualize o DER em: `database/diagrama_er.png`
+Visualize o DER em: `sprint-3-hermes-reply
+/database/diagrama_er.png`
 
 ### Principais entidades e campos
 - **sensores**: `id_sensor (PK)`, `nome`, `tipo`, `localizacao`, `data_instalacao`, `status ('ativo'|'inativo'|'manutencao')`, `modelo`

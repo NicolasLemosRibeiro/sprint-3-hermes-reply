@@ -12,14 +12,13 @@ Este repositório entrega a Fase 5 do desafio Hermes Reply, cobrindo **modelagem
 - **Notebook de ML** (scikit-learn) treinando um classificador multiclasse com visualizações.
 - **Gráficos** dos dados e dos resultados do modelo.
 - **README** explicando modelagem, ML e resultados.
-- **Link do vídeo** de apresentação (até 5 min) — adicione em “Apresentação em vídeo”.
 
 ---
 
 ## 🧱 Banco de Dados (Relacional)
 
 ### Diagrama ER
-Visualize o DER em: ![Diagrama ER](database/diagrama_er.png)
+Visualize o DER em:database/diagrama_er.png
 
 ### Principais entidades e campos
 - **sensores**: `id_sensor (PK)`, `nome`, `tipo`, `localizacao`, `data_instalacao`, `status ('ativo'|'inativo'|'manutencao')`, `modelo`
@@ -116,8 +115,4 @@ jupyter nbconvert --to notebook --execute machine_learning/modelo_ml.ipynb
 
 ---
 
-### ▶️ Apresentação em vídeo
-  
-**Vídeo:** https://youtu.be/SEU-LINK-NAO-LISTADO
-"""
 
